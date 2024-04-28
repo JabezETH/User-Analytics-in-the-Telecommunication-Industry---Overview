@@ -109,6 +109,17 @@ plt.title('Top 10 Average TCP per Handset Type')
 plt.xticks(rotation=45)  # Rotate x-axis labels for better readability
 plt.show()
 
+top_ten_average_RTT_session = df.groupby('Handset Type')['average_RTT'].mean().nlargest(10)
+print(top_ten_average_RTT_session)
+
+# Create a scatter plot
+plt.scatter(top_ten_average_RTT_session.index, top_ten_average_RTT_session.values)
+plt.xlabel('Handset Type')
+plt.ylabel('Average RTT')
+plt.title('Top 10 Average RTT per Handset Type')
+plt.xticks(rotation=45)  # Rotate x-axis labels for better readability
+plt.show()
+
 
 #k-means clustering (where k = 3)
 

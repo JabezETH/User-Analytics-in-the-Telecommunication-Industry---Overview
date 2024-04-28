@@ -1,6 +1,7 @@
 import pandas as pd
 
 
+
 from sqlalchemy import create_engine
 
 def connect_to_database(database_name='telecom', table_name='xdr_data', connection_params=None):

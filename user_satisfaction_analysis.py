@@ -159,7 +159,7 @@ for msisdn, user_data in customer_engagment.groupby('MSISDN/Number'):
 experiance_scores_df = pd.DataFrame(list(experiance_scores_per_user.items()), columns=['MSISDN/Number', 'Experiance Score'])
 
 # Now engagement_scores_df contains the MSISDN/Number and the corresponding engagement score for each user
-#print(experiance_scores_df)
+print(experiance_scores_df)
 
 
 merged_df = pd.merge(experiance_scores_df, engagement_scores_df, on='MSISDN/Number', how='inner')

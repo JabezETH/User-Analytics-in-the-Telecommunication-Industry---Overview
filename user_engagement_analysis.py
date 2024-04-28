@@ -6,6 +6,8 @@ from sklearn.preprocessing import MinMaxScaler
 from sklearn.cluster import KMeans
 
 
+
+# Code to be executed when the script is run directly
 if __name__ == "__main__":
     # Code to be executed when the script is run directly
     df = database.connect_to_database()
@@ -61,8 +63,8 @@ def plot_top_customer_materics(customer_engagment):
         print(f"Error ploting customer engagement: {e}")
         return None
 
-print(plot_top_customer_materics)
-
+top_ten_engaged_customers = plot_top_customer_materics(customer_engagment)
+print(top_ten_engaged_customers)
 
 #Normalize each engagement metric
 def normalize_engagment_materics(customer_engagment):
@@ -193,13 +195,13 @@ def plot_top_3_apps_traffic(engagment_per_app):
     try:
         # Sum the traffic for each application across all customers
         total_traffic_per_app = {
-            'Social Media': engagment_per_app['social_media_traffic'].sum(),
-            'Google': engagment_per_app['google_traffic'].sum(),
-            'Email': engagment_per_app['email_traffic'].sum(),
-            'Youtube': engagment_per_app['youtube_traffic'].sum(),
-            'Netflix': engagment_per_app['netflix_traffic'].sum(),
-            'Gaming': engagment_per_app['gaming_traffic'].sum(),
-            'Other': engagment_per_app['other_traffic'].sum()
+            'Social Media': engagment_per_app['social_media_traffic'].sum()/ (1024 ** 2),
+            'Google': engagment_per_app['google_traffic'].sum()/ (1024 ** 2),
+            'Email': engagment_per_app['email_traffic'].sum()/ (1024 ** 2),
+            'Youtube': engagment_per_app['youtube_traffic'].sum()/ (1024 ** 2),
+            'Netflix': engagment_per_app['netflix_traffic'].sum()/ (1024 ** 2),
+            'Gaming': engagment_per_app['gaming_traffic'].sum()/ (1024 ** 2),
+            'Other': engagment_per_app['other_traffic'].sum()/ (1024 ** 2)
         }
 
         # Sort the total traffic in descending order and select the top 3
@@ -208,7 +210,7 @@ def plot_top_3_apps_traffic(engagment_per_app):
         # Plot the top 3 most used applications
         plt.bar(top_3_apps_traffic.keys(), top_3_apps_traffic.values())
         plt.xlabel('Application')
-        plt.ylabel('Total Traffic (MB)')
+        plt.ylabel('Total Traffic (TB)')
         plt.title('Top 3 Most Used Applications by Traffic')
         plt.show()
 
